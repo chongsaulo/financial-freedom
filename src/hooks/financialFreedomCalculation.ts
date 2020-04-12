@@ -73,7 +73,7 @@ const useFinancialFreedomCalculation = (initialState = {
     const profitProduct = 1 + profitRate / 100;
     const salaryProduct = 1 + salaryGrowthRate / 100;
 
-    const inflatedMonthlyInput = monthlyInput * salaryProduct;
+    const inflatedMonthlyInput = previousYear.monthlyInput * salaryProduct;
     const previousYearRevenue = previousYear.revenue;
 
     const yearlyInput = inflatedMonthlyInput * 12;
