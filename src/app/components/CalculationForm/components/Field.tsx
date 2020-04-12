@@ -16,16 +16,17 @@ const Field = ({
   adornment,
   adornmentPosition,
 }: IFieldProps) => (
-    <Grid item={true} xs={12} sm={6} md={3}>
+    <Grid item={true} xs={12} sm={6} md={6} lg={2}>
       <FormControl
         fullWidth={true}
         variant='filled'
+        color='secondary'
       >
         <InputLabel>{title}</InputLabel>
         <FilledInput
           type='number'
           value={value}
-          onChange={(e: any) => setValue(e.target.value)}
+          onChange={(e: any) => setValue(e.target.value === '' ? '' : Number(e.target.value))}
           startAdornment={adornmentPosition === 'start' ? (
             <InputAdornment position="start">
               {adornment}

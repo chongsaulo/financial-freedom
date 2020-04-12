@@ -2,23 +2,41 @@ import { useState } from "react";
 import { range, last } from 'lodash';
 
 const useFinancialFreedomCalculation = (initialState = {
+  initialCapital: 200000,
   monthlyInput: 15000,
+  salaryGrowthRate: 2,
   inflationRate: 3,
   profitRate: 7,
   calculateNumberOfYear: 12,
 }) => {
+  const [initialCapital, setInitialCapital] = useState(initialState.initialCapital);
   const [monthlyInput, setMonthlyInput] = useState(initialState.monthlyInput);
+  const [salaryGrowthRate, setSalaryGrowthRate] = useState(initialState.salaryGrowthRate);
   const [inflationRate, setInflationRate] = useState(initialState.inflationRate);
   const [profitRate, setProfitRate] = useState(initialState.profitRate);
   const [calculateNumberOfYear, setCalculateNumberOfYear] = useState(initialState.calculateNumberOfYear);
 
   const fields = [
     {
+      title: '最初資金',
+      value: initialCapital,
+      setValue: setInitialCapital,
+      adornment: '$',
+      adornmentPosition: 'start',
+    },
+    {
       title: '每月可投入資金',
       value: monthlyInput,
       setValue: setMonthlyInput,
       adornment: '$',
       adornmentPosition: 'start',
+    },
+    {
+      title: '狗薪增長率 (%)',
+      value: salaryGrowthRate,
+      setValue: setSalaryGrowthRate,
+      adornment: '%',
+      adornmentPosition: 'end',
     },
     {
       title: '量化寬鬆印錢通脹率 (%)',
@@ -53,13 +71,19 @@ const useFinancialFreedomCalculation = (initialState = {
 
     const inflationProduct = Math.pow((1 + inflationRate / 100), year);
     const profitProduct = 1 + profitRate / 100;
+    const salaryProduct = 1 + salaryGrowthRate / 100;
 
-    const inflatedMonthlyInput = monthlyInput * inflationProduct;
+    const inflatedMonthlyInput = monthlyInput * salaryProduct;
     const previousYearRevenue = previousYear.revenue;
 
     const yearlyInput = inflatedMonthlyInput * 12;
-    const revenue = (previousYearRevenue + yearlyInput) * profitProduct;
 
+    const revenue = (() => {
+      if (year === 0) {
+        return (initialCapital + previousYearRevenue + yearlyInput) * profitProduct;
+      }
+      return (previousYearRevenue + yearlyInput) * profitProduct;
+    })();
 
     const yearlyProfit = revenue - previousYearRevenue;
     const deflatedYearlyProfit = yearlyProfit / inflationProduct;
