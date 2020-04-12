@@ -14,7 +14,7 @@ const ReturnCard = ({
   const classes = useStyles();
 
   return (
-    <Grid item={true} xs={6} sm={4} md={3}>
+    <Grid item={true} xs={12} sm={6} md={3}>
       <Card className={classes.root}>
         <CardContent>
           <div className={classes.gutterBottom}>
@@ -39,7 +39,7 @@ const ReturnCard = ({
           </div>
 
           <div className={classes.gutterBottom}>
-            <Typography style={{ fontSize: 12 }} variant="body2" component="div">
+            <Typography style={{ fontSize: 14 }} variant="body2" component="div">
               每月投入：${monthlyInput}
             </Typography>
             <Typography style={{ fontSize: 12 }} variant="body2" component="div">
