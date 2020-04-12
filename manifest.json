@@ -1,0 +1,40 @@
+{
+  "short_name": "財務自由計算機",
+  "name": "財務自由計算機",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "icons/res/mipmap-mdpi/FinancialFreedomCalculator.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "icons/res/mipmap-hdpi/FinancialFreedomCalculator.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "icons/res/mipmap-xhdpi/FinancialFreedomCalculator.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "icons/res/mipmap-xxhdpi/FinancialFreedomCalculator.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "icons/res/mipmap-xxxhdpi/FinancialFreedomCalculator.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#3f51b5",
+  "background_color": "#ffffff"
+}
